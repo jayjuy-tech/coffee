@@ -1,0 +1,354 @@
+/*  */
+/* Membuat inisialisasi warna yang akan digunakan nantinya */
+:root {
+  --primary: #b6895b;
+  --bg: #010101;
+  /* dua elemen diatas ini namanya bebas yang penting ingat pas manggilnya nanti */
+}
+
+/*  */
+* {
+  /* tanda * artinya all selector (pilih semua) */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* box-sizing: border-box; agar tidak perlu mengatur lagi dimensi elemen ketika ngasih padding atau border */
+  outline: none;
+  /* outline: none; berguna untuk ngasih style untuk form atau button */
+  border: none;
+  /* border: none; agar kita yang punya kedali atas semua bordernya */
+  text-decoration: none;
+  /* text-decoration: none; agar tidak ada garis bawahnya ketika bikin link */
+}
+
+/* body */
+body {
+  font-family: "Poppins", sans-serif;
+  /* Fonts (script ada di file html-nya) */
+  background-color: var(--bg);
+  color: white;
+  /* min-height: 2000px; */
+}
+
+/* navbar */
+.navbar {
+  display: flex;
+  /* display: flex; displaynya jadi flex agar mudah mengatur elemen di dalamnya, yang di dalam navbar jadi flex item nya  */
+  justify-content: space-between;
+  /* justify-content:space-between; agar sejajar secara horizontal (samping atau kiri kanan) */
+  align-items: center;
+  /* align-items: center; agar sejajar secara vertikal (atas-bawah) */
+  padding: 1.4rem 7%;
+  /* 1.4rem agar mengatur padding atas bawahnya dan 7% agar ketika dibuka di setiap device ukurannya akan menyesuaikan 7% pinggirnya */
+  background-color: rgba(1, 1, 1, 0.8);
+  /* 0.8 diatas adalah transparansi warnanya agar tidak terlalu solid */
+  border-bottom: 1px solid var(--primary);
+  /* border-bottom: 1px solid var(--primary); agar ada garis horizontal dibawahnya */
+
+  /*  */
+  /* dibawah ini agar posisi navbarnya tetap diam diatas meskipun di scrol */
+  position: fixed;
+  /* position: fixed; agar posisinya tetap */
+  top: 0;
+  /* top : 0; agar posisinya tetap mentok diatas */
+  left: 0;
+  right: 0;
+  /* left and right agar tetap meski ditarik ke kiri dan ke kanan (posisinya full di layar kekiri dan kekanan) */
+  z-index: 9999;
+  /* harus ada z-index: dengan angka yg sangat besar sehingga tidak ada elemen lain yang ngalahin tumpukannya */
+}
+
+/* navbar logo (JyCoffeshop)*/
+.navbar .navbar-logo {
+  font-size: 2rem;
+  /* font-size:; untuk mengatur ukuran font nya, 2rem berarti 2 kali 16 pixel */
+  font-weight: 700;
+  /* font-weight: 700; agar ukuran font nya bold senilai 700 */
+  color: #b6895b;
+  /* untuk mengatur warma font nya jadi putih */
+  font-style: italic;
+}
+
+/* navbar logo (JyCoffeshop), Coffeshop yang dipilih dengan eleman span ingin diganti warnanya */
+.navbar .navbar-logo span {
+  color: #fff;
+  /* color: #b6895b; agar text coffeshop jadi warna #b695b */
+}
+
+/* .navbar .navbar-nav a */
+.navbar .navbar-nav a {
+  color: #fff;
+  display: inline-block;
+  /* display: inline-block; karena display a inline tidak bisa dikasih margin. Jika mau dikasih margin tanpa membuatnya turun kebawah maka pakai inline-block */
+  font-size: 1.1rem;
+  margin: 0 1rem;
+  /* margin: 0 1rem; 0 = margin atas bawahnya tidak ada alias nol. 1 = margin kiri kanannya sebesar 1rem (1 x 16px) */
+}
+
+/*  */
+.navbar .navbar-nav a:hover{
+  color: #b6895b;
+  /* dua elemen diatas agar ketika navbar-nav a dihover (ditunjuk) oleh kursor warnanya jadi berubah jadi warna #b6895b */
+}
+
+/*  */
+/* elemen dibawah ini agar ketika navbar-nav a dihover ada garis dibawahnya */
+.navbar .navbar-nav a::after{
+  content: '';
+  /* content: ''; contentnya kosong dulu agar bisa diatur dimensinya */
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--primary);
+  /* tiga elemen diatas agar ada garis bawah dibawah navbar-nav a dengan warna primary */
+  transform: scaleX(0);
+  /* transform: scaleX(0); agar hilang dulu garis bawahnya, nanti dimunculin lagi dengan kode dibawah ini*/
+}
+
+/*  */
+.navbar .navbar-nav a:hover::after{
+  /* navbar-nav a ketika (di hover) ditunjuk maka (after) afternya akan...  */
+  transform: scaleX(0.5);
+  transition: 0.2s linear;
+  /* ...garis bawahnya muncul setengah karena (scaleX(0.5)) dan memiliki transisi 0.2 detik */
+}
+/* .navbar .navbar-nav a */
+
+
+/*  */
+/* .navbar .navbar-extra a */
+.navbar .navbar-extra a {
+  color: #fff;
+  /* color: #fff; untuk mengubah warna navbar-extra a jadi warna putih */
+  margin: 0 0.5rem;
+  /* margin: 0 0.5rem;  0 = margin atas bawahnya tidak ada alias nol. 0.5 = margin kiri kanannya sebesar 0.5rem (0.5 x 16px) = 8px */
+}
+
+/*  */
+.navbar .navbar-extra a:hover {
+  color: #b6895b;
+  /* dua elemen diatas agar ketika navbar-extra a dihover (ditunjuk) oleh kursor warnanya jadi berubah jadi warna #b6895b atau primary */
+}
+
+/*  */
+
+/* Ingin menghilangkan hamburger-menu yang ada di navbar extra ketika di layar desktop  dam nantinya muncul ketika dibuka di perangkat lainnya misal laptop, tablet, dan mobile phone*/
+#hamburger-menu {
+  display: none;
+  /* elemen menu hilang dulu (none) */
+}
+
+/*  */
+/*  */
+/*  */
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  /* min-height: 100vh; 100vh agar gambarnya memenuhi layar */
+  display: flex;
+  align-items: center;
+  /* align-items: center; agar center secara vertikal
+  kalau justify-content agar center secara horizontal */
+  background-image: url('../img/coffe2.jpg');
+  /* background-image: url('../img/coffe2.jpg'); agar backgroundnya pakai foto. Memanggil foto dengan nama coffe2.jpg dari folder img. Jangan keluar dulu karena css ini ada di folder css dengan kode ../ */
+  background-repeat: no-repeat;
+  /*  */
+  background-size: cover;
+  /* background-size: cover;  agar backgroundnya penuh satu layar */
+  background-position: center;
+  /* background-position: center;  agar posisinya pas ada di tengah-tengah */
+  position: relative;
+  /* position: relative;  karena dibawah dikasih position absolut maka disini harus dikasih position relative agar tidak mengganggu posisi aslinya*/
+}
+
+/* Ingin membuat gradasi warna ketika halaman webnya di scrol ke bawah */
+.hero::after {
+  content: '';
+  /* content: '';  content kosong agar bisa dikasih style */
+  display: block;
+  /*  */
+  position: absolute;
+  /*  */
+  width: 100%;
+  /* width: 100%;  agar lebarnya full 100%*/
+  height: 30%;
+  /* height: 100%; agar tingginya juga full 100% */
+  bottom: 0;
+  /* agar gradasinya turun ke bawah */
+
+  /* membuat gradasinya */
+  background: linear-gradient(0deg, rgba(1,1,3,1) 8%, rgba(255,255,255,0) 50%);
+  /*  */
+}
+
+/* Content */
+.hero .content {
+  padding: 1.4rem 7%;
+  /* padding: 1.4rem 7%;  atas bawahnya 1.4rem dan kiri kanannya 7% (sama dengan ukuran navbar) */
+  max-width: 60rem;
+}
+
+/* .hero .content h1 */
+.hero .content h1 {
+  font-size: 5em;
+  /* font-size: 5em; ukuran font agar lebih besar */
+  color: #fff;
+  /* warnya font nya putih */
+  text-shadow: 2px 2px 4px rgba(1, 1, 3, 0.8);
+  /* membuat bayangan (shadow pada text nya) dengan warna rgba 1,1,3 dan transparansi 0.8*/
+  line-height: 1.2;
+  /* line-height: 1.2;  jarak atas bawah antar text nya */
+}
+
+/* ganti warna text "Kopi" nya */
+.hero .content h1 span {
+  color: var(--primary);
+}
+/*  */
+
+/* .hero .content p */
+.hero .content p {
+  font-size: 1.6rem;
+  /* ukuran fotnya 1.6rem */
+  margin-top: 1rem;
+  /* margin-top: 1rem; jarak atasnya dari h1 sebesar 1 rem atau 16px */
+  line-height: 1.4;
+  /* line-height: 1.4; jarak atas bawah antar text p nya sebesar 1.4 */
+  font-weight: 100;
+  /* font-weight: 100; untuk menipiskan font nya */
+  text-shadow: 2px 2px 4px rgba(1, 1, 3, 0.8);
+  /* membuat bayangan (shadow pada text nya) dengan warna rgba 1,1,3 dan transparansi 0.8*/
+
+  /* mix blend mode adalah untuk mencampur warna ketika bertabrakan */
+  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; warnanya akan otomatis berubah ketika bertabrakan dengan warna yang sama agar text nya dapat terbaca. Ini terjadi ketika membuka dengan perangkat mobile-phone  */
+
+}
+
+/* .hero .content cta */
+.hero .content .cta {
+  margin-top: 1rem;
+  /* margin-top: 1rem; jarak atasnya dari p sebesar 1 rem atau 16px */
+  display: inline-block;
+  /* display: inline-block; agar bisa dikasih margin dan padding */
+  padding: 1rem 5rem;
+  /* padding: 1rem 5rem; padding atas bawahnya 1rem dan kiri kanannya 5rem */
+  margin: '';
+  /* kosong (tidak dikasih margin gapapa) */
+
+  font-size: 1.4rem;
+  /* ukuran font nya 1.4rem */
+  color: #fff;
+  /* warna putih */
+  background-color: #b6895b;
+  /* warna backgroundnya primary */
+  border-radius: 0.7rem;
+  /* border-radius: 0.7rem; agar sudut bordernya tidak terlalu tajam */
+  box-shadow: 2px 2px 2px rgba(1, 1, 3, 0.8);
+  /*   /* membuat bayangan (shadow pada box nya) dengan warna rgba 1,1,3 dan transparansi 0.8*/
+}
+
+
+/* About Section */
+.about {
+  padding: 1.8rem 10%;
+}
+/* About Section */
+
+/* Hero Section */
+
+
+
+/* MEDIA QUERIES */
+/* Agar responsif (Memberikan style yang berbeda ketika dibuka di perangkat yang berbeda) */
+
+/* Laptop */
+@media (max-width: 1366px) {
+  /* ketika dibuka di layar 1366px (laptop), maka... */
+  html {
+    font-size: 75%;
+    /* ...maka ukurannya mengecil menjadi 75% */
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  /* ketika dibuka di layar 768px (tablet), maka... */
+  html {
+    font-size: 62.5%;
+    /* ...maka ukurannya mengecil menjadi 62.5% */
+  }
+
+  /* Ingin memunculkan elemen hamburger-menu kembali di layar tablet */
+  #hamburger-menu {
+    display: inline-block;
+  }
+
+  /* Ingin memidahkan elemen navbar-nav yang tadinya diatas jadi di kanan (tidak terlihat). Tujuannya agar ketika elemen menu di klik akan menjadi sidebar dari kanan yang menyimpan elemen navbar-nav */
+  /* Jika hanya ingin menghilangkan elemennya cukup display: none; */
+  .navbar .navbar-nav {
+    position: absolute;
+    /* position: absolute; agar bisa bergerak-gerak tanpa mengganggu elemen-elemen di sekitarnya */
+    top: 100%;
+    /* top: 100%; agar nempul full ke atas */
+    right: -100%;
+    /* right: -100%; -100% agar elemen navbar-nav nya keluar dari layar. Jika 0% maka ada disebelah kanan layar (masih didalam layar) dan jika -100% maka keluar dari layar */
+    background-color: #fff;
+    /* background-color: #fff; agar backgroundnya putih */
+    width: 30rem;
+    /* width: 30rem; lebarnya 30rem */
+    height: 100vh;
+    /* height: 100vh; tingginya memenuhi layar perangkat (100vh) */
+    transition: 0.4s;
+    /* transition: 0.4s; transisi selama 0.4 detik untuk memunculkan sidebar */
+  }
+
+  /*  */
+  /* Menambah class active pada navbar-nav agar nanti pada tampilan tablet ketika hamburger-menu diklik akan menampilkan navbar-nav */
+  /* Tetapi cara nambahin class active nya harus menggunakan javascript */
+  .navbar .navbar-nav.active {
+    /* navbar-nav.active tanpa spasi sama sekali! */
+    right: 0%;
+    /* ketika class active ditambahkan maka elemen navbar-nav akan muncul dari kanan */
+  }
+
+  /* navbar-nav a di tablet */
+  .navbar .navbar-nav a {
+    color: #010101;
+    display: block;
+    /*  display: block; agar membuat urutan elemennya turun ke bawah (vertikal) */
+    margin: 1.5rem;
+    /* margin: 1.5rem; membuat jarak antar elemen (vertikal) sebesar 1.5rem (1.5 x 16px = 24px) */
+    padding: 0.5rem;
+    /*  */
+    font-size: 1.7rem;
+    /* font-size: 1.7rem; ukuran font nya 1.7rem (1.7 x 16px = 27.2px) */
+  }
+
+  /* untuk mengatur garis bawah pada saat di hover */
+  .navbar .navbar-nav a::after {
+    transform-origin: 0 0;
+    /* transform-origin: 0 0;  0 = sumbu x ialah nol dan sumbu y juga nol */
+  }
+
+  /* untuk mengurangi panjang garis bawahnya */
+  .navbar .navbar-nav a:hover::after {
+    /* .navbar .navbar-nav a:hover::after  ialah ketika di hover maka afternya ... */
+    transform: scaleX(0.2);
+    /* transform: scaleX(0.2); afternya ialah garisnya hanya sepanjang 0.2 */
+  }
+
+}
+
+/* Mobile phone */
+@media (max-width: 450px) {
+  /* ketika dibuka di layar 450px (mobile phone), maka... */
+  html {
+    font-size: 55%;
+    /* ...maka ukurannya mengecil menjadi 55% */
+  }
+}
+
+/*  */
+/* CARI REFERENSI RESPONSIVE BREAK POINTS */
+/*  */
